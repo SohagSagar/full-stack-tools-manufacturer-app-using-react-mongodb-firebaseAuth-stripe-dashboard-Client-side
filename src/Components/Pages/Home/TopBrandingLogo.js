@@ -5,7 +5,7 @@ import { TiSocialGooglePlus } from 'react-icons/ti';
 
 const TopBrandingLogo = () => {
     return (
-        <div className='px-24 mx-auto bg-secondary'>
+        <div className='px-24 mx-auto bg-secondary hidden lg:block'>
             {/* social-links */}
             <div className='flex justify-between content-center py-3 '>
                 <div>
