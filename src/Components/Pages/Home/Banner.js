@@ -8,7 +8,7 @@ const Banner = () => {
                 <div className='flex-1'>
                     <h1 className='uppercase text-5xl'>Find Wheels & Tires</h1>
                     <h2 className='uppercase text-2xl'>For All Vehicles Types</h2>
-                    <button class="btn hover:bg-primary hover:text-secondary btn-sm bg-secondary border-0 mt-5 text-primary rounded-full px-5 h-10">Purchase Now</button>
+                    <button class="btn drop-shadow-xl hover:bg-primary hover:text-secondary btn-sm bg-secondary border-0 mt-5 text-primary rounded-full px-5 h-10">Purchase Now</button>
                 </div>
                 <div className='flex-1'>
                     <img  src={tire} alt="" />
