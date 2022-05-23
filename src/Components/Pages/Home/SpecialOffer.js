@@ -5,7 +5,7 @@ import OfferCard from './OfferCard';
 const SpecialOffer = () => {
     return (
         <div className='lg:px-24 mt-20'>
-            <SectionHeading className="text-secondary">Special Offer</SectionHeading><hr />
+            <SectionHeading className="text-secondary">Special Offer</SectionHeading>
 
             <div className='grid lg:grid-cols-3 sm:grid-cols-1 gap-5 justify-items-center'>
                 <OfferCard/>

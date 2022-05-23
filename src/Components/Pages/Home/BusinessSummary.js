@@ -1,21 +1,20 @@
 import React from 'react';
 import SectionHeading from '../../Shared/SectionHeading';
-
-
-
-
+import { BsDashLg } from 'react-icons/bs';
 
 const BusinessSummary = () => {
 
     return (
         <div className='bg-secondary py-10'>
             <div className='lg:px-24'>
-                {/* <div className=' '>
-                    <h1 className='text-3xl'>Special Offer</h1>
-                    <hr className='h-5 text-[black]' />
-                </div> */}
 
-                <SectionHeading>Millions Business Trust Us</SectionHeading>
+                <div className='uppercase text-center text-primary text-3xl font-semibold'>
+                    <div className=' flex items-center justify-center'>
+                        <BsDashLg />
+                        <h1 className=''>Millions Business Trust Us</h1>
+                        <BsDashLg />
+                    </div>
+                </div>
                 <p className='text-center text-xl text-accent'>No Compromize with Product Quality</p>
 
                 <div class="stats stats-vertical lg:stats-horizontal shadow grid h-36 items-center justify-items-center my-5">
