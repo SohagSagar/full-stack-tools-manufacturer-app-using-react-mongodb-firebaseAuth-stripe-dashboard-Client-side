@@ -1,13 +1,11 @@
 import React from 'react';
+import SectionHeading from '../../Shared/SectionHeading';
 import OfferCard from './OfferCard';
 
 const SpecialOffer = () => {
     return (
         <div className='lg:px-24 mt-20'>
-            <div className=' '>
-                <h1 className='text-3xl'>Special Offer</h1>
-                <hr className='h-5' />
-            </div>
+            <SectionHeading className="text-secondary">Special Offer</SectionHeading><hr />
 
             <div className='grid lg:grid-cols-3 sm:grid-cols-1 gap-5 justify-items-center'>
                 <OfferCard/>

@@ -1,17 +1,15 @@
 import React from 'react';
 import carRim from '../../../resources/offer-imgs/rim.png'
+import SectionHeading from '../../Shared/SectionHeading';
 
 const WhyChoiceUs = () => {
     return (
         <div className='lg:px-24 mt-20'>
-            <div className=' '>
-                <h1 className='text-3xl'>Why Choice Us</h1>
-                <hr className='h-5' />
-            </div>
+            <SectionHeading>Why Choice Us</SectionHeading>
 
-            <div className='flex justify-between items-center my-12'>
+            <div className='flex justify-between sm:justify-center items-center my-12 flex-col sm:flex-row'>
 
-                <div>
+                <div className='flex-1'>
                     <div className='flex items-start mb-24'>
                         <div>
                             <h1 className='text-5xl text-secondary'>01</h1>
@@ -33,11 +31,11 @@ const WhyChoiceUs = () => {
                     </div>
                 </div>
 
-                <div>
-                    <img className='w-[600px]' src={carRim} alt="" />
+                <div className='flex-1 lg:py-1 sm:py-20 hover:drop-shadow-2xl ease-in-out'>
+                    <img className='w-[400px] sm:w-[600px] ' src={carRim} alt="" />
                 </div>
 
-                <div>
+                <div className='flex-1'>
                     <div className='flex items-start mb-24'>
                         <div>
                             <h1 className='text-5xl text-secondary'>03</h1>

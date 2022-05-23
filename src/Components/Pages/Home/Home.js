@@ -1,5 +1,6 @@
 import React from 'react';
 import Banner from './Banner';
+import BusinessSummary from './BusinessSummary';
 import ManufacturedParts from './ManufacturedParts';
 import ShippingBannerInfo from './ShippingBannerInfo';
 import SpecialOffer from './SpecialOffer';
@@ -14,6 +15,7 @@ const Home = () => {
             <ManufacturedParts/>
             <SpecialOffer/>
             <WhyChoiceUs/>
+            <BusinessSummary/>
         </div>
     );
 };
