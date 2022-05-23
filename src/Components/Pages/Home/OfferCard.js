@@ -1,16 +1,14 @@
 import React from 'react';
-import tire from '../../../resources/tire/tire1.png';
-import './PartsCard.css';
+import airfilter from '../../../resources/offer-imgs/air-filter.png'
 
-const PartsCard = () => {
-
+const OfferCard = () => {
     return (
+        <div class="card card-compact w-96 bg-base-100 shadow-xl my-5">
+            <span class="badge text-right bg-secondary text-primary ml-4 py-3 border-0 font-bold">-20%</span>
+            <figure><img src={airfilter} alt="Shoes" /></figure>
+            <div class="card-body ">
+                <h2 class="text-[16px] font-bold uppercase text-center">Honda OEM Air Filter Z01</h2>
 
-        <div class="card card-compact shadow-xl mt-2 mb-2 w-[350px]">
-            <figure><img className='w-[300px] rounded mt-3' src={tire} alt="Shoes" /></figure>
-            <div class="card-body">
-                <h2 className='text-[14px] font-bold text-center'>APOLLO (INDIA)-145/70R12 69T</h2>
-                <div class="overflow-x-auto">
                     <table class="table table-compact ">
 
                         <thead>
@@ -18,10 +16,7 @@ const PartsCard = () => {
                                 <th className='text-[12px]'>Brand</th>
                                 <td className='text-[12px] '>Apollo</td>
                             </tr>
-                            <tr>
-                                <th className='text-[12px]'>Status</th>
-                                <th className='text-[12px] text-green-500'>In Stock</th>
-                            </tr>
+
                             <tr>
                                 <th className='text-[12px]'>Available</th>
                                 <td className='text-[12px] '>500 Pics</td>
@@ -32,24 +27,21 @@ const PartsCard = () => {
                             </tr>
                             <tr>
                                 <th className='text-[12px]'>Price</th>
-                                <td className='text-[12px] '>100$/Pics</td>
+                                <td className='text-[12px] '><span className='text-primary'><s className='text-red-500'>100$</s>  $80/pics</span></td>
                             </tr>
-                            <tr>
-                                <th className='text-[12px]'>Description</th>
-                                <td className='text-[12px] break-normal w-[290px] pb-5'>Apollo Tyres Ltd. came into spotlight in around 1972 and has...</td>
-                            </tr>
+
                         </thead>
 
                     </table>
-                </div>
 
                 <button class="btn drop-shadow-xl hover:bg-primary hover:text-secondary btn-sm bg-secondary border-0 mt-2 text-primary rounded-full px-5 h-10">Purchase Now</button>
+
+                {/* <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Buy Now</button>
+                </div> */}
             </div>
         </div>
-
-
-
     );
 };
 
-export default PartsCard;
+export default OfferCard;
