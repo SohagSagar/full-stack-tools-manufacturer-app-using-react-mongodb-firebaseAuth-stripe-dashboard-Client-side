@@ -1,0 +1,8 @@
+table td,th{
+    background-color: white !important;
+}
+.table-compact :where(th, td) {
+
+
+    line-height: 0.5em;
+  }

@@ -7,7 +7,7 @@ import { RiSecurePaymentLine } from 'react-icons/ri';
 const ShippingBannerInfo = () => {
     return (
         <div className='sm:px-6 lg:px-24 mt-24 mb-24'>
-            <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 py-8 border rounded-md'>
+            <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 py-8 sm:justify-items-center border rounded-md'>
 
                 {/* free shipping */}
                 <div className='flex items-center w-[300px] justify-around lg:py-4 lg:border-r-[1px]'>
