@@ -9,7 +9,7 @@ const TopBrandingLogo = () => {
             {/* social-links */}
             <div className='flex justify-between content-center py-3 '>
                 <div>
-                    <p className='inline text-primary'>Follow Us:</p>
+                    <p className='inline text-primary uppercase font-semibold'>Follow Us:</p>
                     <div className='inline text-xl'>
                         <RiFacebookFill className='inline ml-4' />
                         <AiOutlineTwitter className='inline ml-4' />
