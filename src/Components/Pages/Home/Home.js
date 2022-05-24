@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from './Banner';
 import BusinessSummary from './BusinessSummary';
+import CouponSection from './CouponSection';
 import CustomerReviews from './CustomerReviews';
 import ManufacturedParts from './ManufacturedParts';
 import ShippingBannerInfo from './ShippingBannerInfo';
@@ -18,6 +19,7 @@ const Home = () => {
             <WhyChoiceUs/>
             <BusinessSummary/>
             <CustomerReviews/>
+            <CouponSection/>
         </div>
     );
 };
