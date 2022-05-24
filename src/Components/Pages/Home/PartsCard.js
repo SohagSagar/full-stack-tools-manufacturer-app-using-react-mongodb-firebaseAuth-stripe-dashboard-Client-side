@@ -6,12 +6,12 @@ const PartsCard = () => {
 
     return (
 
-        <div class="card card-compact shadow-xl mt-2 mb-2 w-[350px]">
+        <div className="card card-compact shadow-xl mt-2 mb-2 w-[350px]">
             <figure><img className='w-[300px] rounded mt-3' src={tire} alt="Shoes" /></figure>
-            <div class="card-body">
+            <div className="card-body">
                 <h2 className='text-[14px] font-bold text-center'>APOLLO (INDIA)-145/70R12 69T</h2>
-                <div class="overflow-x-auto">
-                    <table class="table table-compact ">
+                <div className="overflow-x-auto">
+                    <table className="table table-compact ">
 
                         <thead>
                             <tr>
@@ -43,7 +43,7 @@ const PartsCard = () => {
                     </table>
                 </div>
 
-                <button class="btn drop-shadow-xl hover:bg-primary hover:text-secondary btn-sm bg-secondary border-0 mt-2 text-primary rounded-full px-5 h-10">Purchase Now</button>
+                <button className="btn drop-shadow-xl hover:bg-primary hover:text-secondary btn-sm bg-secondary border-0 mt-2 text-primary rounded-full px-5 h-10">Purchase Now</button>
             </div>
         </div>
 

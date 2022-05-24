@@ -3,13 +3,13 @@ import airfilter from '../../../resources/offer-imgs/air-filter.png'
 
 const OfferCard = () => {
     return (
-        <div class="card card-compact w-96 bg-base-100 shadow-xl my-5">
-            <span class="badge text-right bg-secondary text-primary ml-4 py-3 border-0 font-bold">-20%</span>
+        <div className="card card-compact w-96 bg-base-100 shadow-xl my-5">
+            <span className="badge text-right bg-secondary text-primary ml-4 py-3 border-0 font-bold">-20%</span>
             <figure><img src={airfilter} alt="Shoes" /></figure>
-            <div class="card-body ">
-                <h2 class="text-[16px] font-bold uppercase text-center">Honda OEM Air Filter Z01</h2>
+            <div className="card-body ">
+                <h2 className="text-[16px] font-bold uppercase text-center">Honda OEM Air Filter Z01</h2>
 
-                    <table class="table table-compact ">
+                    <table className="table table-compact ">
 
                         <thead>
                             <tr>
@@ -34,10 +34,10 @@ const OfferCard = () => {
 
                     </table>
 
-                <button class="btn drop-shadow-xl hover:bg-primary hover:text-secondary btn-sm bg-secondary border-0 mt-2 text-primary rounded-full px-5 h-10">Purchase Now</button>
+                <button className="btn drop-shadow-xl hover:bg-primary hover:text-secondary btn-sm bg-secondary border-0 mt-2 text-primary rounded-full px-5 h-10">Purchase Now</button>
 
-                {/* <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Buy Now</button>
+                {/* <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Buy Now</button>
                 </div> */}
             </div>
         </div>

@@ -13,7 +13,7 @@ const CouponSection = () => {
                 </div>
 
                 <div>
-                    <button class="btn drop-shadow-xl bg-primary hover:text-secondary btn-sm border-0 mt-2 text-white rounded-full px-5 h-10">Discover Now</button>
+                    <button className="btn drop-shadow-xl bg-primary hover:text-secondary btn-sm border-0 mt-2 text-white rounded-full px-5 h-10">Discover Now</button>
                 </div>
 
                 <div className='inline text-5xl'>

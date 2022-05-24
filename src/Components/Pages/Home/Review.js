@@ -4,16 +4,16 @@ import { BsChatSquareQuote } from 'react-icons/bs';
 
 const Review = () => {
     return (
-        <div class="card card-compact w-96 bg-base-100 shadow-xl">
+        <div className="card card-compact w-96 bg-base-100 shadow-xl">
             <figure>
-                <div class="avatar">
-                    <div class="w-24 mask mask-hexagon">
+                <div className="avatar">
+                    <div className="w-24 mask mask-hexagon">
                         <img src={review} alt="" />
                     </div>
                 </div>
             </figure>
-            <div class="card-body">
-                <h2 class="font-semibold uppercase text-center leading-3">John Kabir</h2>
+            <div className="card-body">
+                <h2 className="font-semibold uppercase text-center leading-3">John Kabir</h2>
                 <p className=' text-[12px] leading-3 text-center font-semibold'>Manager | XYZ Company</p>
                 <p className=' text-[12px] leading-3 text-center font-semibold'>Rating: 4/5</p>
 

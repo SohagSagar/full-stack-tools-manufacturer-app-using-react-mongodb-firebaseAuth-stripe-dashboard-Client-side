@@ -18,7 +18,7 @@ const TopBrandingLogo = () => {
                     </div>
                 </div>
                 <div>
-                    <button class="btn btn-sm text-secondary rounded-full px-5">Subscribe</button>
+                    <button className="btn btn-sm text-secondary rounded-full px-5">Subscribe</button>
                 </div>
             </div>
         </div>
