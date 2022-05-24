@@ -1,36 +1,64 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineGoogle } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import PasswordResetModal from './PasswordResetModal';
 import auth from '../../../FirebaseAPI/firebase.init';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../../Shared/Loading';
 import toast from 'react-hot-toast';
+import { MdError } from 'react-icons/md';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const [modalStatus,setModalStatus]=useState(true);
-    const [signInWithGoogle, user, loading, googleError] = useSignInWithGoogle(auth);
-    const [loginError,setLoginError]=useState('');
-    const onSubmit = data => console.log(data);
+    const [modalStatus, setModalStatus] = useState(true);
+    const [loginError, setLoginError] = useState('');
+    const navigate=useNavigate();
 
-    if(googleError){
-        console.log(googleError?.code);
-        const loginErrorMessage= googleError.code.split('/')[1];
-        setLoginError(loginErrorMessage);
-    }
-    useEffect(()=>{
-        if(user){
-            toast.success('LOGIN SUCCESSFUL!');
+    // SIGN IN USING GOOGLE 
+    const [signInWithGoogle, googleUser, googlelLoading, googleError] = useSignInWithGoogle(auth);
+
+    // SIGN IN WITH EMAIL AND PASSWORD
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+    
+    // GET FORM DATA
+    const onSubmit = data =>{
+        console.log(data);
+        signInWithEmailAndPassword(data?.email,data?.password)
+    } 
+
+
+    // SET LOGIN ERRORS
+    useEffect(() => {
+        if (googleError || error) {
+            console.log(googleError?.code);
+            const loginErrorMessage = googleError?.code?.split('/')[1] || error?.code?.split('/')[1];
+            setLoginError(loginErrorMessage);
         }
-    },[user]);
-    
+        else {
+            setLoginError('');
+        }
+    }, [googleError,error])
 
-    if(loading){
-        return ;
+    // CHECKING LOGIN STATUS
+    useEffect(() => {
+        if (googleUser || user) {
+            toast.success('LOGIN SUCCESSFUL!');
+            navigate('/');
+        }
+    }, [googleUser,user]);
+
+
+    // CHEKING LOADING STATUS
+    if (googlelLoading || loading) {
+        return <Loading/>;
     }
-    
+
     return (
         <div class="hero min-h-full bg-black-100 mb-36 mt-5">
             <div class="hero-content flex-col lg:flex-row-reverse">
@@ -41,6 +69,15 @@ const Login = () => {
                 <div class="card w-96 max-w-sm shadow-2xl bg-base-100">
                     <div class="card-body">
                         <form onSubmit={handleSubmit(onSubmit)} className="uppercase font-semibold ">
+
+                            {/* SHOWING LOGIN ERRORS */}
+                            {
+                                loginError &&
+                                <div class="alert  shadow-md">
+                                    <span className='mx-auto font-semibold text-[14px] text-red-600'><MdError />{loginError}</span>
+                                </div>
+                            }
+
 
                             {/* Email field */}
                             <div class="form-control ">
@@ -98,7 +135,7 @@ const Login = () => {
                                 <label class="label">
 
                                     {/* <a href="#" class="label-text-alt link link-hover text-[10px]">Forgot password?</a> */}
-                                    <label onClick={()=>setModalStatus(true)} for="resetPasswordModal" class="label-text-alt link link-hover text-[10px]">Forgot password?</label>
+                                    <label onClick={() => setModalStatus(true)} for="resetPasswordModal" class="label-text-alt link link-hover text-[10px]">Forgot password?</label>
                                 </label>
                             </div>
 
@@ -109,11 +146,11 @@ const Login = () => {
                             </div>
                         </form>
                         <div class="divider">OR</div>
-                        <button onClick={()=>signInWithGoogle()} className="btn drop-shadow-xl hover:bg-primary hover:text-secondary btn-sm bg-secondary border-0  text-primary rounded-full px-5 h-10 font-bold"><AiOutlineGoogle className="text-lg mr-1" /> Continue with google</button>
+                        <button onClick={() => signInWithGoogle()} className="btn drop-shadow-xl hover:bg-primary hover:text-secondary btn-sm bg-secondary border-0  text-primary rounded-full px-5 h-10 font-bold"><AiOutlineGoogle className="text-lg mr-1" /> Continue with google</button>
                     </div>
                 </div>
             </div>
-            {modalStatus && <PasswordResetModal setModalStatus={setModalStatus}/>}
+            {modalStatus && <PasswordResetModal setModalStatus={setModalStatus} />}
         </div>
     );
 };

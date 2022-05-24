@@ -1,10 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../../FirebaseAPI/firebase.init';
+import Loading from '../../Shared/Loading';
+import { MdError } from 'react-icons/md';
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+    const [errorMessage, setErrorMessage] = useState('');
+    const navigate =useNavigate();
+
+    // SET USER NAME WHILE REGISTER
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    // CREATE USER USING EMAIL AND PASSWORD
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+    // GETTING FORM DATA
+    const onSubmit = async data => {
+        console.log(data);
+        await createUserWithEmailAndPassword(data?.email, data?.password);
+        await updateProfile( {displayName:data?.name})
+    }
+
+    // GET USER STATUS
+    useEffect(()=>{
+        if(user){
+            toast.success('USER CREATED SUCCESSFULLY !');
+            navigate('/');
+        }
+    },[user]);
+
+    // SET ERROR MESSAGES
+    useEffect(()=>{
+        if(error || updateError){
+            const message = error?.code.split('/')[1] || updateError?.code.split('/')[1];
+            setErrorMessage(message)
+        }else{
+            setErrorMessage('')
+        }
+    },[])
+
+    // SHOWING LOADDING STATUS
+    if(updating || loading){
+        return <Loading/>
+    }
     return (
         <div class="hero min-h-full bg-black-100 mb-36 mt-5">
             <div class="hero-content flex-col lg:flex-row-reverse">
@@ -15,6 +62,14 @@ const Register = () => {
                 <div class="card w-96 max-w-sm shadow-2xl bg-base-100">
                     <div class="card-body">
                         <form onSubmit={handleSubmit(onSubmit)} className="uppercase font-semibold ">
+
+                            {/* SHOWING LOGIN ERRORS */}
+                            {
+                                errorMessage &&
+                                <div class="alert  shadow-md">
+                                    <span className='mx-auto font-semibold text-[14px] text-red-600'><MdError />{errorMessage}</span>
+                                </div>
+                            }
 
                             {/*  NAME FIELD */}
                             <div class="form-control ">
@@ -31,7 +86,7 @@ const Register = () => {
                                 <label class="label">
                                     {
                                         errors?.email?.type === 'required' && <span class="label-text-alt text-red-500 text-[11px]">{errors?.email.message}</span>
-                                    }    
+                                    }
                                 </label>
                             </div>
                             {/* Email field */}
@@ -96,7 +151,7 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-            
+
         </div>
     );
 };
