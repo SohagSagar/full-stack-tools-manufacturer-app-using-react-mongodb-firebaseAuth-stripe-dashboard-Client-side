@@ -1,6 +1,8 @@
 import React from 'react';
-import SectionHeading from '../../Shared/SectionHeading';
 import { BsDashLg } from 'react-icons/bs';
+import { VscFeedback } from 'react-icons/vsc';
+import { BsGraphUp } from 'react-icons/bs';
+import { GrDeliver,GrGroup } from 'react-icons/gr';
 
 const BusinessSummary = () => {
 
@@ -20,24 +22,28 @@ const BusinessSummary = () => {
                 <div className="stats stats-vertical lg:stats-horizontal shadow grid h-36 items-center justify-items-center my-5">
 
                     <div className="stat text-center">
-                        <div className="stat-title">Companies</div>
-                        <div className="stat-value">34+</div>
+                        <div className="stat-title">Delivery</div>
+                        <GrDeliver className='text-4xl mx-auto mt-2'/>
+                        <div className="stat-value">34k+</div>
                     </div>
 
                     <div className="stat text-center">
-                        <div className="stat-title">Delivery</div>
+                        <div className="stat-title">Yearly Revenue</div>
+                        <BsGraphUp className='text-4xl mx-auto mt-2'/>
                         <div className="stat-value">4,200k+</div>
                     </div>
 
                     <div className="stat text-center">
                         <div className="stat-title">Happy Customer</div>
+                        <GrGroup className='text-4xl mx-auto mt-2'/>
                         <div className="stat-value">4800k+</div>
 
                     </div>
 
                     <div className="stat text-center">
                         <div className="stat-title">Feedback</div>
-                        <div className="stat-value">3600k+</div>
+                        <VscFeedback className='text-4xl mx-auto mt-2'/>
+                        <div className="stat-value">3.6k+</div>
 
                     </div>
 

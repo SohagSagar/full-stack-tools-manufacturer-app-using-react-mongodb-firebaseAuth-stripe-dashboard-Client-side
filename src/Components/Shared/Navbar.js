@@ -13,6 +13,8 @@ const Navbar = () => {
     const menu=<>
         <li><Link to={'/'}>Home</Link></li>
         <li><Link to={'/about'}>About</Link></li>
+        <li><Link to={'/blogs'}>Blogs</Link></li>
+
         {
             user && <li><button disabled className='font-semibold'><i>{user?.displayName}</i></button></li>
         }

@@ -10,6 +10,8 @@ import Login from './Components/Pages/Login/Login';
 import Register from './Components/Pages/Login/Register';
 import { Toaster } from 'react-hot-toast';
 import Logout from './Components/Pages/Login/Logout';
+import Blogs from './Components/Pages/Blogs/Blogs';
+import PageNotFound from './Components/Shared/PageNotFound';
 
 function App() {
   return (
@@ -19,9 +21,12 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home />}></Route>
+        {/* <Route path='/about' element={<About />}></Route> */}
         <Route path='/login' element={<Login />}></Route>
         <Route path='/logout' element={<Logout />}></Route>
         <Route path='/register' element={<Register />}></Route>
+        <Route path='/blogs' element={<Blogs />}></Route>
+        <Route path='*' element={<PageNotFound/>}></Route>
       </Routes>
 
       <Toaster
