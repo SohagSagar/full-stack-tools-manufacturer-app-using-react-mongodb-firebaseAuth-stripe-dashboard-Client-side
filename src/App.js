@@ -12,6 +12,15 @@ import { Toaster } from 'react-hot-toast';
 import Logout from './Components/Pages/Login/Logout';
 import Blogs from './Components/Pages/Blogs/Blogs';
 import PageNotFound from './Components/Shared/PageNotFound';
+import Dashboard from './Components/Pages/Dashboard/Dashboard';
+import RequireAuth from './Components/Shared/RequireAuth';
+import MyProfile from './Components/Pages/Dashboard/MyProfile';
+import MyOrder from './Components/Pages/Dashboard/MyOrder';
+import AddReview from './Components/Pages/Dashboard/AddReview';
+import AddRegularProduct from './Components/Pages/Dashboard/AddRegularProduct';
+import AddDiscuontedProduct from './Components/Pages/Dashboard/AddDiscuontedProduct';
+import AllUsers from './Components/Pages/Dashboard/AllUsers';
+import DashboardInitial from './Components/Pages/Dashboard/DashboardInitial';
 
 function App() {
   return (
@@ -26,7 +35,27 @@ function App() {
         <Route path='/logout' element={<Logout />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/blogs' element={<Blogs />}></Route>
-        <Route path='*' element={<PageNotFound/>}></Route>
+        <Route path='*' element={<PageNotFound />}></Route>
+
+
+        {/* protected routes */}
+
+        <Route path='/dashboard' element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        }>
+          <Route index element={<DashboardInitial/>}></Route>
+          <Route path='my-profile' element={<MyProfile/>}></Route>
+          <Route path='my-order' element={<MyOrder/>}></Route>
+          <Route path='add-review' element={<AddReview/>}></Route>
+          <Route path='add-regular-product' element={<AddRegularProduct/>}></Route>
+          <Route path='add-discounted-product' element={<AddDiscuontedProduct/>}></Route>
+          <Route path='all-users' element={<AllUsers/>}></Route>
+         
+        </Route>
+
+
       </Routes>
 
       <Toaster
