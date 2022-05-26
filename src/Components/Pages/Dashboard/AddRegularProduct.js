@@ -1,13 +1,89 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const AddRegularProduct = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = async data => {
-        console.log(data);
+    const { register,reset, formState: { errors }, handleSubmit } = useForm();
+    const [regularProduct,setRegularProduct]=useState('')
 
+
+    const imageStorage_KEY = '57ce17c1c8539ec3f021cae064cc7167';
+
+    const onSubmit = async data => {
+        console.log(data?.productName);
+
+        const regularProduct={
+            // productName:data?.productName,
+            // available:data?.available,
+            // brand:data?.brand,
+            // description:data?.description,
+            // imageURL:data?.imageURL,
+            // minimumOrder:data?.minimumOrder,
+            // price:data?.price
+            
+        }
+        console.log(regularProduct);
+        
+        // const image = data?.imageURL[0];
+        // const formData = new FormData();
+        // formData.append('imageURL', image);
+        // const url = `https://api.imgbb.com/1/upload?key=${imageStorage_KEY}`;
+
+        // fetch(url, {
+        //     method: 'POST',
+        //     body: formData
+        // })
+        //     .then(res => res.json())
+        //     .then(result => {
+        //         console.log(result);
+        //         if(result.success){
+        //             const imageURL = result?.data?.url;
+        //             const regularProduct = {
+        //                 data,
+        //                 imageURL
+        //             }
+        //             setRegularProduct(regularProduct)
+        //         }
+                
+                
+        //     })
+        //     console.log(regularProduct);
+
+        //send data to database
+       
+        console.log(regularProduct);
+        fetch('https://immense-dusk-26481.herokuapp.com/regularProducts', {
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(inserted => {
+                if (inserted.insertedId) {
+                    toast.success('Product added successfully')
+                    
+                }
+                else {
+                    toast.error('Failed to add the doctor');
+                }
+            })
+
+        
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div class="hero bg-black-400 mb-36 ">
             <div class="hero-content flex-col lg:flex-row-reverse p-0">
@@ -112,6 +188,26 @@ const AddRegularProduct = () => {
                                 <label class="label pt-0">
                                     {
                                         errors?.price?.type === 'required' && <span class="label-text-alt text-red-500 text-[11px]">{errors?.price.message}</span>
+                                    }
+                                    
+                                </label>
+                            </div>
+
+                            {/* image  field */}
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text text-[12px]">image url</span>
+                                </label>
+                                <input {...register('imageURL', {
+                                    required: {
+                                        value: true,
+                                        message: 'Field is required'
+                                    }
+                                })} type="text" placeholder="IMAGE URL" class="input input-bordered input-sm" />
+
+                                <label class="label pt-0">
+                                    {
+                                        errors?.imageURL?.type === 'required' && <span class="label-text-alt text-red-500 text-[11px]">{errors?.imageURL.message}</span>
                                     }
                                     
                                 </label>
