@@ -11,6 +11,7 @@ const Logout = () => {
     signOut(auth);
     useEffect(()=>{
         if(!user){
+            localStorage.removeItem('accessToken');
             toast.success('LOGOUT SUCCESSFULLY !')
         }
     },[user]);

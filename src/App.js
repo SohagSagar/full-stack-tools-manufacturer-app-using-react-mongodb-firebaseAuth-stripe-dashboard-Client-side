@@ -21,6 +21,11 @@ import AddRegularProduct from './Components/Pages/Dashboard/AddRegularProduct';
 import AddDiscuontedProduct from './Components/Pages/Dashboard/AddDiscuontedProduct';
 import AllUsers from './Components/Pages/Dashboard/AllUsers';
 import DashboardInitial from './Components/Pages/Dashboard/DashboardInitial';
+import PurchaseProduct from './Components/Pages/PurchaseProduct/PurchaseProduct';
+import MyPortfolio from './Components/Pages/MyPortfolio/MyPortfolio';
+import ViewRegularProduct from './Components/Pages/Dashboard/ViewRegularProduct';
+import Payment from './Components/Pages/Dashboard/Payment';
+import AllOrders from './Components/Pages/Dashboard/AllOrders';
 
 function App() {
   return (
@@ -35,10 +40,18 @@ function App() {
         <Route path='/logout' element={<Logout />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/blogs' element={<Blogs />}></Route>
+        <Route path='/portfolio' element={<MyPortfolio />}></Route>
+        <Route path='/payment/:id' element={<Payment/>}></Route>
         <Route path='*' element={<PageNotFound />}></Route>
 
 
         {/* protected routes */}
+
+        <Route path='/purchase/:id' element={
+          <RequireAuth>
+            <PurchaseProduct/>
+          </RequireAuth>
+        }></Route>
 
         <Route path='/dashboard' element={
           <RequireAuth>
@@ -52,6 +65,9 @@ function App() {
           <Route path='add-regular-product' element={<AddRegularProduct/>}></Route>
           <Route path='add-discounted-product' element={<AddDiscuontedProduct/>}></Route>
           <Route path='all-users' element={<AllUsers/>}></Route>
+          <Route path='all-orders' element={<AllOrders/>}></Route>
+          <Route path='view-regular-product' element={<ViewRegularProduct/>}></Route>
+          
          
         </Route>
 
