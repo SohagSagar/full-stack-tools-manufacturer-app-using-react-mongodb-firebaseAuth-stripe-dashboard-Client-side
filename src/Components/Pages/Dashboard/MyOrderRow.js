@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import DeleteMyOrderedModal from './DeleteMyOrderedModal';
 
 const MyOrderRow = ({ myItem, index, refetch }) => {
-    const { _id, productName, totalProductPrice, productQuantity, orderDate, orderStatus, paymentDate, transactionId } = myItem;
+    const { _id, productName, totalProductPrice, productQuantity, orderDate, orderStatus, paymentDate, transactionId, paymentStatus } = myItem;
     const [modalStatus, setModalStatus] = useState(true);
     const handleModalStatus = () => {
         setModalStatus(true);
@@ -18,7 +18,7 @@ const MyOrderRow = ({ myItem, index, refetch }) => {
             <td>{totalProductPrice}</td>
             <td>{productQuantity}</td>
 
-            {
+            {/* {
                 orderStatus === 'processing' || orderStatus === 'shipped' ?
                     <td>
                         <><button class="btn btn-success btn-xs w-32">Paid</button></>
@@ -28,7 +28,26 @@ const MyOrderRow = ({ myItem, index, refetch }) => {
                         <button disabled="disabled" className="btn btn-xs rounded-pill btn-accent">Unpaid</button>
                         <button className="btn btn-xs btn-success ml-1"><Link to={`/payment/${_id}`}>Pay now</Link></button>
                     </></td>
+                   
+            } */}
+
+            {
+                paymentStatus === 'paid' ?
+                <td>
+                    <><button class="btn btn-success btn-xs w-32">{paymentStatus}</button></>
+                </td>
+                :
+                <td>
+                    <>
+                    <button disabled="disabled" className="btn btn-xs rounded-pill btn-accent">Unpaid</button>
+                    <button className="btn btn-xs btn-success ml-1"><Link to={`/payment/${_id}`}>Pay now</Link></button>
+                    </>
+                </td>
+
             }
+            {/* {
+                 refetch()
+            } */}
             <td>
                 <><button class="btn btn-info btn-xs">{orderStatus}</button></>
             </td>
@@ -62,6 +81,7 @@ const MyOrderRow = ({ myItem, index, refetch }) => {
                 modalStatus &&
                 <DeleteMyOrderedModal _id={_id} setModalStatus={setModalStatus} refetch={refetch}></DeleteMyOrderedModal>
             }
+
         </tr>
     );
 };

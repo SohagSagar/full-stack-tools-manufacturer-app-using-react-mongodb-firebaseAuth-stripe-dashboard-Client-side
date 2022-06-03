@@ -12,7 +12,7 @@ const UsersRow = ({ user, index,refetch }) => {
     }
     //make an user to an admin
     const makeAdmin = () => {
-        fetch(`https://vast-forest-24784.herokuapp.com/user/makeAdmin/${email}`, {
+        fetch(`http://localhost:5000/user/makeAdmin/${email}`, {
             method: 'PUT',
             headers: {
                 'authorization':`Bearer ${localStorage.getItem('accessToken')}`
@@ -29,7 +29,7 @@ const UsersRow = ({ user, index,refetch }) => {
 
     //remove an user from admin role
     const removeAdmin = () =>{
-        fetch(`https://vast-forest-24784.herokuapp.com/user/removeAdmin/${email}`, {
+        fetch(`http://localhost:5000/user/removeAdmin/${email}`, {
             method: 'PUT',
             headers: {
                 'authorization':`Bearer ${localStorage.getItem('accessToken')}`

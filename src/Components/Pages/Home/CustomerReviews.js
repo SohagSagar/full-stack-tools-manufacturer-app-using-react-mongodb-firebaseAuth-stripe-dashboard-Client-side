@@ -4,7 +4,7 @@ import Review from './Review';
 
 const CustomerReviews = () => {
     const [reviews,setReviews]=useState([]);
-    fetch('https://vast-forest-24784.herokuapp.com/customer-reviews',{
+    fetch('http://localhost:5000/customer-reviews',{
         method:'GET',
         headers:{
             'authorization':`Bearer ${localStorage.getItem('accessToken')}`

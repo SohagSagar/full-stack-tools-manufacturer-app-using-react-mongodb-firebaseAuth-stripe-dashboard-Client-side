@@ -21,7 +21,7 @@ const CheckoutForm = ({ paymentInfo }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://vast-forest-24784.herokuapp.com/create-payment-intent", {
+        fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ totalPrice }),
@@ -85,12 +85,14 @@ const CheckoutForm = ({ paymentInfo }) => {
             console.log('paymentIntent', paymentIntent);
             toast.success('PAYMENT SUCCESS');
             const paymentSuccessInfo = {
+                // test:'paid',
                 paymentStatus:'paid',
                 paymentDate: date,
+                orderStatus:'processing',
                 transactionId: paymentIntent?.id,
             }
             setLoading(true);
-            fetch(`https://vast-forest-24784.herokuapp.com/order/${_id}`, {
+            fetch(`http://localhost:5000/order/${_id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

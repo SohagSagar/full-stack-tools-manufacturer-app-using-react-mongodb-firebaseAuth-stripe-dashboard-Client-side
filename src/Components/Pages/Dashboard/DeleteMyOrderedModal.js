@@ -7,7 +7,7 @@ const DeleteMyOrderedModal = ({ _id, setModalStatus,refetch }) => {
     const deleteConfirm = () => {
         setModalStatus(false);
 
-        fetch(`https://vast-forest-24784.herokuapp.com/delete-ordered-item/${_id}`, {
+        fetch(`http://localhost:5000/delete-ordered-item/${_id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'

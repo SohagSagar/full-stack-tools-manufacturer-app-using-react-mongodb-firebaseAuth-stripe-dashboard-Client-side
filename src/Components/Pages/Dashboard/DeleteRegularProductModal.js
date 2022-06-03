@@ -4,14 +4,14 @@ import useDeleteItem from '../../../Hooks/useDeleteItem';
 
 
 const DeleteRegularProductModal = ({_id,refetch,setModalStatus}) => {
-    // const url=`https://vast-forest-24784.herokuapp.com/regularProduct/delete/${_id}`
+    // const url=`http://localhost:5000/regularProduct/delete/${_id}`
     // const [deleteStatus] = useDeleteItem(url)
 
     const deleteConfirm = () => {
         setModalStatus(false);
         
 
-        fetch(`https://vast-forest-24784.herokuapp.com/regularProduct/delete/${_id}`, {
+        fetch(`http://localhost:5000/regularProduct/delete/${_id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'

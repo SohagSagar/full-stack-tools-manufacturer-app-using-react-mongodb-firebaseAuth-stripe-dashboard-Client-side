@@ -19,7 +19,7 @@ const AddReview = () => {
             image:user?.photoURL
         }
 
-        fetch('https://vast-forest-24784.herokuapp.com/add-review',{
+        fetch('http://localhost:5000/add-review',{
             method:'POST',
             headers:{
                 'content-type':'application/json'

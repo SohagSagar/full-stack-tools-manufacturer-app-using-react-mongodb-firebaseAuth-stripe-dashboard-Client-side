@@ -7,7 +7,7 @@ const DeleteUserModal = ({_id,refetch,setModalStatus}) => {
     const deleteConfirm = () => {
         setModalStatus(false);
 
-        fetch(`https://vast-forest-24784.herokuapp.com/user/${_id}`, {
+        fetch(`http://localhost:5000/user/${_id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'

@@ -6,7 +6,7 @@ const useRegularProducts=()=>{
     const [regularProducts,setRegularProducts]=useState([]);
 
     useEffect(()=>{
-        fetch('https://vast-forest-24784.herokuapp.com/regularProducts',{
+        fetch('http://localhost:5000/regularProducts',{
             method:'GET',
             headers:{
                 'authorization':`Bearer ${localStorage.getItem('accessToken')}`
@@ -18,7 +18,7 @@ const useRegularProducts=()=>{
 
 
     // const {data:regularProducts,isLoading} = useQuery('regularProducts',()=>
-    //     fetch('https://vast-forest-24784.herokuapp.com/regularProducts').then(res=>res.json())
+    //     fetch('http://localhost:5000/regularProducts').then(res=>res.json())
     // )
     // if(isLoading){
     //     return;

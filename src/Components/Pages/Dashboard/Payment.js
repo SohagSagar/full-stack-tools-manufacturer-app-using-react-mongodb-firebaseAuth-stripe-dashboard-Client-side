@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51L5FSGDos8bAPmLSM25LX03XW7kucPERzUmGW
 
 const Payment = () => {
     const { id } = useParams();
-    const { data: paymentInfo, isLoading } = useQuery('paymentProduct', () => fetch(`https://vast-forest-24784.herokuapp.com/payment-info/${id}`).then(res => res.json()));
+    const { data: paymentInfo, isLoading } = useQuery('paymentProduct', () => fetch(`http://localhost:5000/payment-info/${id}`).then(res => res.json()));
 
     if (isLoading) {
         return <Loading />

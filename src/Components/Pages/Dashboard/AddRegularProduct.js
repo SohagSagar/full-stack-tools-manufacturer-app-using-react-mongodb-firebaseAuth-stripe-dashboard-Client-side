@@ -44,7 +44,7 @@ const AddRegularProduct = () => {
         }
 
         //send data to database
-       fetch('https://vast-forest-24784.herokuapp.com/regularProducts',{
+       fetch('http://localhost:5000/regularProducts',{
            method:'POST',
            headers:{
                'content-type':'application/json',

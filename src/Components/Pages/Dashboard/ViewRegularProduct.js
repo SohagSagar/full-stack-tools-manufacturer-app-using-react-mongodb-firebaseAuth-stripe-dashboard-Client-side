@@ -5,7 +5,7 @@ import ViewRegularProductRow from './ViewRegularProductRow';
 
 
 const ViewRegularProduct = () => {
-    const { data: products, refetch, isLoading } = useQuery('regularProduct', () => fetch('https://vast-forest-24784.herokuapp.com/regular-product', {
+    const { data: products, refetch, isLoading } = useQuery('regularProduct', () => fetch('http://localhost:5000/regular-product', {
         method: 'GET',
         headers: {
             'content-type': 'application-json',

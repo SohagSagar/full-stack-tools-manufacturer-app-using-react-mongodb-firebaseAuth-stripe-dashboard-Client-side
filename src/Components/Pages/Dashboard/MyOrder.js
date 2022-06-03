@@ -12,7 +12,7 @@ const MyOrder = () => {
     const navigate=useNavigate()
 
     const { data:myItems, isLoading,refetch } = useQuery('myItems', () => 
-        fetch(`https://vast-forest-24784.herokuapp.com/my-order?customerEmail=${user?.email}`,{
+        fetch(`http://localhost:5000/my-order?customerEmail=${user?.email}`,{
             method:'GET',
             headers:{
                 'authorization':`Bearer ${localStorage.getItem('accessToken')}`

@@ -1,57 +1,73 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../../FirebaseAPI/firebase.init';
 import Loading from '../../Shared/Loading';
-import { format} from 'date-fns'
+import { format } from 'date-fns'
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
-const PurchaseModal = ({purchaseInfo,price,inputOrderQuantity,setPurchaseModalStatus}) => {
-    const [user]=useAuthState(auth)
-    const { register,reset, formState: { errors }, handleSubmit } = useForm();
-    const totalPrice=parseInt(price)*parseInt(inputOrderQuantity);
-    const quantity=parseInt(inputOrderQuantity);
-    const orderDate=format(new Date(),'PP');
-    const navigate=useNavigate();
+const PurchaseModal = ({ _id, available, purchaseInfo, price, inputOrderQuantity, setPurchaseModalStatus }) => {
+    const [user] = useAuthState(auth);
+    const { register, reset, formState: { errors }, handleSubmit } = useForm();
+    const totalPrice = parseInt(price) * parseInt(inputOrderQuantity);
+    const quantity = parseInt(inputOrderQuantity);
+    const orderDate = format(new Date(), 'PP');
+    const navigate = useNavigate();
 
 
-    if(!quantity || !totalPrice){
+    if (!quantity || !totalPrice) {
         return <Loading></Loading>
     }
 
     const onSubmit = data => {
 
-    const orderedItemDetails={
-        ...data,
-        orderDate,
-        paymentStatus:'unpaid',
-        image:purchaseInfo?.imageURL,
-        orderStatus:'pending'
-        
-    }
-    // reset();
-    console.log(orderedItemDetails);
- 
-    fetch('https://vast-forest-24784.herokuapp.com/ordered-product',{
-        method:'POST',
-        headers:{
-            'content-type':'application/json'
-        },
-        body:JSON.stringify(orderedItemDetails)
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        if(data?.insertedId){
-            toast.success('ORDER SUCCESSFUL');
-            setPurchaseModalStatus(false);
-            navigate('/dashboard/my-order')
+        const updatedQuantity = parseInt(available) - parseInt(data?.productQuantity);
+
+        const orderedItemDetails = {
+            ...data,
+            orderDate,
+            paymentStatus: 'unpaid',
+            image: purchaseInfo?.imageURL,
+            orderStatus: 'pending'
 
         }
-        else{
-            toast.error('FAIL TO PLACE ORDER')
-        }
-    })
+        // reset();
+
+
+        fetch('http://localhost:5000/ordered-product', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(orderedItemDetails)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data?.insertedId) {
+                    toast.success('ORDER SUCCESSFUL');
+                    setPurchaseModalStatus(false);
+
+                    fetch(`http://localhost:5000/regularProducts/${_id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({available:updatedQuantity})
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                        })
+
+                    navigate('/dashboard/my-order')
+
+                }
+                else {
+                    toast.error('FAIL TO PLACE ORDER')
+                }
+            })
 
 
     }
@@ -80,7 +96,7 @@ const PurchaseModal = ({purchaseInfo,price,inputOrderQuantity,setPurchaseModalSt
                                 <label className="label">
                                     <span className="label-text text-[12px] ">Customer Email</span>
                                 </label>
-                                <input {...register('customerEmail')} readOnly type="Email" className="input input-bordered input-sm w-full max-w-xs" value={user?.email}/>
+                                <input {...register('customerEmail')} readOnly type="Email" className="input input-bordered input-sm w-full max-w-xs" value={user?.email} />
                             </div>
 
                             {/* Customer mobile field */}
@@ -118,7 +134,7 @@ const PurchaseModal = ({purchaseInfo,price,inputOrderQuantity,setPurchaseModalSt
                                 <textarea {...register('customerAddress', {
                                     required: true,
                                     message: "Field is required"
-                                })}  type="text" className="input input-bordered textarea h-[60px] input-sm w-full max-w-xs" />
+                                })} type="text" className="input input-bordered textarea h-[60px] input-sm w-full max-w-xs" />
                                 <label className="label">
                                     {
                                         errors?.customerAddress?.type === 'required' && <span className="label-text-alt text-red-500 text-[11px]">{errors?.customerAddress.message}</span>
@@ -137,7 +153,7 @@ const PurchaseModal = ({purchaseInfo,price,inputOrderQuantity,setPurchaseModalSt
                                 <label className="label">
                                     <span className="label-text text-[12px] ">Product Name</span>
                                 </label>
-                                <input {...register('productName')} readOnly type="text" className="input input-bordered input-sm w-full max-w-xs" value={purchaseInfo?.productName}/>
+                                <input {...register('productName')} readOnly type="text" className="input input-bordered input-sm w-full max-w-xs" value={purchaseInfo?.productName} />
                             </div>
 
                             {/* product quantity field */}
@@ -145,8 +161,8 @@ const PurchaseModal = ({purchaseInfo,price,inputOrderQuantity,setPurchaseModalSt
                                 <label className="label">
                                     <span className="label-text text-[12px] ">Quantity</span>
                                 </label>
-                                <input {...register('productQuantity')} readOnly type="text" className="input input-bordered input-sm w-full max-w-xs"  defaultValue={quantity}
-                                 />
+                                <input {...register('productQuantity')} readOnly type="text" className="input input-bordered input-sm w-full max-w-xs" value={quantity}
+                                />
                             </div>
 
                             {/* product price field */}
@@ -154,7 +170,7 @@ const PurchaseModal = ({purchaseInfo,price,inputOrderQuantity,setPurchaseModalSt
                                 <label className="label">
                                     <span className="label-text text-[12px] ">Total Price</span>
                                 </label>
-                                <input {...register('totalProductPrice')} readOnly type="text" className="input input-bordered input-sm w-full max-w-xs" value={totalPrice}/>
+                                <input {...register('totalProductPrice')} readOnly type="text" className="input input-bordered input-sm w-full max-w-xs" value={totalPrice} />
                             </div>
                         </fieldset>
 

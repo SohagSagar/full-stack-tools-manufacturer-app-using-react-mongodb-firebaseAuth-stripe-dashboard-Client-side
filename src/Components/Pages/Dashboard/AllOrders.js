@@ -5,7 +5,7 @@ import AllOrdersRow from './AllOrdersRow';
 
 
 const AllOrders = () => {
-    const { data: orders, isLoading } = useQuery('orders', () => fetch('https://vast-forest-24784.herokuapp.com/orders', {
+    const { data: orders, isLoading,refetch} = useQuery('orders', () => fetch('http://localhost:5000/orders', {
         method: 'GET',
         headers:{
             'content-type':'application/json',
@@ -16,8 +16,7 @@ const AllOrders = () => {
     if (isLoading) {
         return <Loading />
     }
-    return;
-    console.log(orders.length);
+    
     return (
         <div class="overflow-x-auto w-full">
             <table class="table w-full">
@@ -35,10 +34,11 @@ const AllOrders = () => {
                 <tbody>
 
                     {
-                        orders?.map(order=><AllOrdersRow
+                        orders.map((order,index)=><AllOrdersRow
                             key={order._id}
-                            
+                            index={index}
                             order={order}
+                            refetch={refetch}
                         ></AllOrdersRow>)
                     }
 

@@ -10,12 +10,12 @@ const PurchaseProduct = () => {
     const [purchaseModalStatus, setPurchaseModalStatus] = useState(true);
 
     useEffect(() => {
-        fetch(`https://vast-forest-24784.herokuapp.com/purchase/${id}`)
+        fetch(`http://localhost:5000/purchase/${id}`)
             .then(res => res.json())
             .then(data => setPurchaseInfo(data))
     }, [])
-    const { productName, brand, available, minimumOrder, price, imageURL, description } = purchaseInfo;
-
+    const { _id,productName, brand, available, minimumOrder, price, imageURL, description } = purchaseInfo;
+    
     const [inputOrderQuantity, setInputOrderQuantity] = useState(Number);
 
     useEffect(() => {
@@ -109,7 +109,7 @@ const PurchaseProduct = () => {
                 </div>
 
                 {
-                    purchaseModalStatus && <PurchaseModal purchaseInfo={purchaseInfo} inputOrderQuantity={inputOrderQuantity} price={price} setPurchaseModalStatus={setPurchaseModalStatus} />
+                    purchaseModalStatus && <PurchaseModal purchaseInfo={purchaseInfo} inputOrderQuantity={inputOrderQuantity} price={price} setPurchaseModalStatus={setPurchaseModalStatus} available={available} _id={_id}/>
                 }
             </div>
 

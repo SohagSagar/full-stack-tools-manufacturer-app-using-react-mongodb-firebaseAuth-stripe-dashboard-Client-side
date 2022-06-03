@@ -9,7 +9,7 @@ const ManufacturedParts = () => {
     //Try to use useQuery:::::
 
     // const {data:regularProducts,isLoading} = useQuery('regularProducts',()=>
-    //     fetch('https://vast-forest-24784.herokuapp.com/regularProducts').then(res=>res.json())
+    //     fetch('http://localhost:5000/regularProducts').then(res=>res.json())
     // )
     // if(isLoading){
     //     return;
